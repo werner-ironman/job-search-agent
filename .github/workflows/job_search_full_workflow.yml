@@ -1,0 +1,29 @@
+
+name: Daily Job Search
+
+on:
+  schedule:
+    - cron: '0 7 * * *'  # Dagelijks om 07:00 UTC / 09:00 BE
+  workflow_dispatch:
+
+jobs:
+  run-job-search:
+    runs-on: ubuntu-latest
+    env:
+      GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install pandas beautifulsoup4 requests
+
+      - name: Run complete job agent
+        run: |
+          python job_agent_full_with_executivesearch.py | tee script_output.log
