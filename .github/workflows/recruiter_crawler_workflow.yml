@@ -1,0 +1,26 @@
+
+name: Recruiter Crawler
+
+on:
+  schedule:
+    - cron: '0 8 * * *'  # Daily at 08:00 UTC (10:00 CET)
+  workflow_dispatch:
+
+jobs:
+  crawl-recruiters:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 pandas
+
+      - name: Run recruiter crawler
+        run: python executive_recruiter_crawler.py
