@@ -22,4 +22,4 @@ jobs:
       run: pip install pandas
 
     - name: Run job search script
-      run: job_search_email_agent_logged.py
+      run: python job_search_email_agent_logged.py
