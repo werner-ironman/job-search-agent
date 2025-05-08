@@ -1,0 +1,25 @@
+name: Daily Job Search
+
+on:
+  schedule:
+    - cron: '0 7 * * *'  # Elke dag om 07:00 UTC
+  workflow_dispatch:
+
+jobs:
+  run-job-search:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: pip install pandas
+
+    - name: Run job search script
+      run: python job_search.py
