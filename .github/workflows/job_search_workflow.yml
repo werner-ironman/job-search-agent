@@ -21,5 +21,5 @@ jobs:
     - name: Install dependencies
       run: pip install pandas
 
-    - name: Run job search script
-      run: python job_search_email_agent_logged.py
+- name: Run job search script
+  run: python job_search_email_agent_logged.py | tee script_output.log
