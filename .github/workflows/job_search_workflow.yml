@@ -10,16 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
-    - name: Install dependencies
-      run: pip install pandas
+      - name: Install dependencies
+        run: pip install pandas
 
-- name: Run job search script
-  run: python job_search_email_agent_logged.py | tee script_output.log
+      - name: Run job search script
+        run: |
+          python job_search_email_agent_logged.py | tee script_output.log
